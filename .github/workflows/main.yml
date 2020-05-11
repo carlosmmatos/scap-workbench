@@ -36,7 +36,7 @@ jobs:
       run: |
         git clone --depth 1 https://github.com/openscap/openscap.git -b master
         pushd openscap/build
-        cmake -DENABLE_PROBES=FALSE ../
+        cmake -DENABLE_PROBES=FALSE -DPCRE_INCLUDE_DIRS=/usr/local/Cellar/pcre/*/include ../
         make -j 4
         make install
         popd
