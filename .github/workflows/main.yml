@@ -27,10 +27,12 @@ jobs:
         brew install jq
         brew install qt5
         brew install asciidoc
-        brew install pcre
+        echo "::add-path::/usr/local/opt/qt/bin"
 
     # Runs a set of commands using the runners shell
     - name: Run openSCAP build process
+      env:
+        PCRE_INCLUDE_DIRS: /usr/local/Cellar/pcre
       run: |
         git clone --depth 1 https://github.com/openscap/openscap.git -b master
         pushd openscap/build
