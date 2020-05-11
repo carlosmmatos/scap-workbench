@@ -27,6 +27,7 @@ jobs:
         brew install jq
         brew install qt5
         brew install asciidoc
+        brew install pcre
 
     # Runs a set of commands using the runners shell
     - name: Run openSCAP build process
