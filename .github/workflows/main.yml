@@ -31,12 +31,12 @@ jobs:
 
     # Runs a set of commands using the runners shell
     - name: Run openSCAP build process
-      env:
-        PCRE_INCLUDE_DIRS: /usr/local/Cellar/pcre
+      # env:
+      #   PCRE_INCLUDE_DIRS: /usr/local/Cellar/pcre
       run: |
-        git clone --depth 1 https://github.com/openscap/openscap.git -b master
+        git clone --depth 1 https://github.com/openscap/openscap.git -b maint-1.3
         pushd openscap/build
-        cmake -DENABLE_PROBES=FALSE -DPCRE_INCLUDE_DIRS=/usr/local/Cellar/pcre/*/include ../
+        cmake -DENABLE_PROBES=FALSE ../
         make -j 4
         make install
         popd
