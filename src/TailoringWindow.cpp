@@ -645,7 +645,7 @@ QString TailoringWindow::getQSettingsKey() const
 void TailoringWindow::deserializeCollapsedItems()
 {
     const QStringList list = mQSettings->value(getQSettingsKey()).toStringList();
-    mCollapsedItemIds = QSet<QString>::QSet<T>(list.begin(), list.end());
+    mCollapsedItemIds = QSet<QString>::QSet<QString>(list.begin(), list.end());
 }
 
 void TailoringWindow::serializeCollapsedItems()
