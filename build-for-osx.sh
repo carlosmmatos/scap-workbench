@@ -1,9 +1,8 @@
-set -ex
+set -e
 
 mkdir -p build-osx/
 pushd build-osx/
-export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/lib
-cmake -D SCAP_WORKBENCH_LOCAL_SCAN_ENABLED=false -D SCAP_AS_RPM_EXECUTABLE="" -DOPENSCAP_INCLUDE_DIRS:PATH=/usr/local/lib ../
+cmake -D SCAP_WORKBENCH_LOCAL_SCAN_ENABLED=false -D SCAP_AS_RPM_EXECUTABLE="" ../
 make -j 4
 mkdir -p ./scap-workbench.app/Contents/Frameworks/
 cp /usr/local/lib/libpcre.1.dylib ./scap-workbench.app/Contents/Frameworks/
