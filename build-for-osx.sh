@@ -1,10 +1,10 @@
-set -e
+set -ex
 
 mkdir -p build-osx/
 pushd build-osx/
 cmake -D SCAP_WORKBENCH_LOCAL_SCAN_ENABLED=false -D SCAP_AS_RPM_EXECUTABLE="" ../
 # Check to see if openscap lib exists
-ld -v openscap
+ls -l /usr/local/lib
 make -j 4
 mkdir -p ./scap-workbench.app/Contents/Frameworks/
 cp /usr/local/lib/libpcre.1.dylib ./scap-workbench.app/Contents/Frameworks/

@@ -49,7 +49,6 @@ jobs:
     # Build OSX image
     - name: Build OSX image
       run: |
-        set +x
         chmod +x ./build-for-osx.sh
         ./build-for-osx.sh
         REL_TAG=`curl -s "https://github.com/ComplianceAsCode/content/releases/latest" | grep -o 'tag/[v.0-9]*' | awk -F/ '{print $2}'`
