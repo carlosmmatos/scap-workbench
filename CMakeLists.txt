@@ -161,7 +161,10 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_CXX_COMPILER_ID} STREQUAL
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
 endif()
 
-include_directories(${SCAP_WORKBENCH_INCLUDE_DIRS})
+include_directories(
+    ${SCAP_WORKBENCH_INCLUDE_DIRS}
+    "/usr/local/lib"    
+)
 
 # Which languages we want generated
 #set(scap_workbench_LANGUAGES de_DE fr_FR)
