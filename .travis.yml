@@ -1,4 +1,4 @@
-os: osx
+os: xcode11.4
 sudo: required
 
 language: cpp
