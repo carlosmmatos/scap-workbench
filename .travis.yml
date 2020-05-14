@@ -10,14 +10,14 @@ jobs:
       osx_image: xcode10.2
     - os: osx
       osx_image: xcode10.3
-    - os: osx
-      osx_image: xcode11
-    - os: osx
-      osx_image: xcode11.1
-    - os: osx
-      osx_image: xcode11.2
-    - os: osx
-      osx_image: xcode11.3
+    # - os: osx
+    #   osx_image: xcode11
+    # - os: osx
+    #   osx_image: xcode11.1
+    # - os: osx
+    #   osx_image: xcode11.2
+    # - os: osx
+    #   osx_image: xcode11.3
       
 sudo: required
 
@@ -32,7 +32,7 @@ env:
 before_install:
   - brew update
   - brew install jq
-  - brew install qt5
+  - brew upgrade qt5
   - brew install asciidoc
 
 before_script:
