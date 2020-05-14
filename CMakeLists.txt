@@ -29,6 +29,7 @@ if (NOT DEFINED OPENSCAP_LIBRARIES OR NOT DEFINED OPENSCAP_INCLUDE_DIRS)
     include("${CMAKE_ROOT}/Modules/FindPkgConfig.cmake")
     pkg_check_modules(OPENSCAP REQUIRED libopenscap>=1.2.0)
 endif()
+link_directories("/usr/local/lib")
 
 # Gather info about openscap version
 if (DEFINED OPENSCAP_VERSION)
@@ -161,10 +162,7 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_CXX_COMPILER_ID} STREQUAL
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
 endif()
 
-include_directories(
-    ${SCAP_WORKBENCH_INCLUDE_DIRS}
-    "/usr/local/lib"    
-)
+include_directories(${SCAP_WORKBENCH_INCLUDE_DIRS})
 
 # Which languages we want generated
 #set(scap_workbench_LANGUAGES de_DE fr_FR)
@@ -216,9 +214,6 @@ if (APPLE)
             COMMAND cp "${SETSID_EXECUTABLE}" "scap-workbench.app/Contents/MacOS/"
             COMMENT "Copying ${SETSID_EXECUTABLE} to application bundle")
     endif()
-
-    # Fix linking on 10.14+. See https://stackoverflow.com/questions/54068035
-    LINK_DIRECTORIES(/usr/local/lib)
 
     add_custom_command(TARGET "scap-workbench" POST_BUILD
         COMMAND cp "${CMAKE_SOURCE_DIR}/scap-workbench-osx-ssh-askpass.sh" "scap-workbench.app/Contents/MacOS/"
