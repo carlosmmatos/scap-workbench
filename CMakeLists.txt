@@ -217,6 +217,9 @@ if (APPLE)
             COMMENT "Copying ${SETSID_EXECUTABLE} to application bundle")
     endif()
 
+    # Fix linking on 10.14+. See https://stackoverflow.com/questions/54068035
+    LINK_DIRECTORIES(/usr/local/lib)
+
     add_custom_command(TARGET "scap-workbench" POST_BUILD
         COMMAND cp "${CMAKE_SOURCE_DIR}/scap-workbench-osx-ssh-askpass.sh" "scap-workbench.app/Contents/MacOS/"
         COMMENT "Copying scap-workbench-osx-ssh-askpass.sh to application bundle")
