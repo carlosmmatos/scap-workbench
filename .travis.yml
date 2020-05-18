@@ -22,6 +22,8 @@ jobs:
       osx_image: xcode11.2
     - os: osx
       osx_image: xcode11.3
+    - os: osx
+      osx_image: xcode11.4
 
 sudo: required
 
