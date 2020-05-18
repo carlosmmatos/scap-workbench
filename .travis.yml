@@ -68,7 +68,7 @@ script:
     fi
   - wget "${DWN_LINK}" -O ssg.zip
   - mkdir -p `pwd`/build-osx/scap-workbench.app/Contents/Resources/ssg/ && unzip ssg.zip && cp -a scap-security-guide-*/* `pwd`/build-osx/scap-workbench.app/Contents/Resources/ssg/
-  - cd build-osx && sh osx-create-dmg.sh
+  - cd build-osx && bash osx-create-dmg.sh
 
 deploy:
   provider: releases
