@@ -37,15 +37,15 @@ env:
 
 before_install:
   - brew update
-  - brew install jq
-  - brew install qt5
-  - brew install asciidoc
-  - brew install pkg-config
-  - brew install doxygen
-  - brew install opendbx
-  - brew install popt
-  - brew install swig
-  - brew install upx
+  - brew install jq || brew upgrade jq
+  - brew install qt5 || brew upgrade qt5
+  - brew install asciidoc || brew upgrade asciidoc
+  - brew install pkg-config || brew upgrade pkg-config
+  - brew install doxygen || brew upgrade doxygen
+  - brew install opendbx || brew upgrade opendbx
+  - brew install popt || brew upgrade popt
+  - brew install swig || brew upgrade swig
+  - brew install upx || brew upgrade upx
 
 before_script:
   - git clone --depth 1 https://github.com/openscap/openscap.git -b master
