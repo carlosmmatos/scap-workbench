@@ -31,7 +31,7 @@ jobs:
         brew install popt
         brew install swig
         brew install upx
-        brew install node
+        brew outdated | grep -q node && brew upgrade node || true
         npm install -g appdmg
         echo "::add-path::/usr/local/opt/qt/bin"
 

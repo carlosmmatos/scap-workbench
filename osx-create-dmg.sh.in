@@ -72,7 +72,7 @@ popd
 # solutions, which lead me to a couple of open source projects created by people who simply wanted
 # to make the process of creating a dmg easier. After testing dmgbuild and appdmg, I settled with
 # appdmg since it was easy to port our existing configuration to it.
-echo << EOF > scapwb.json
+cat << EOF > scapwb.json
 {
     "title": "SCAP Workbench",
     "background": "${DMG_BACKGROUND_IMG}",
