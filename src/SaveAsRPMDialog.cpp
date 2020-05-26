@@ -86,15 +86,12 @@ void SaveAsRPMDialog::slotFinished(int result)
     closure.remove(mScanningSession->getOpenedFilePath());
     QList<QString> closureOrdered;
     closureOrdered.append(mScanningSession->getOpenedFilePath());
-    if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
-    {
+    #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
         closureOrdered.append(closure.values());
-    }
-    else
-    {
+    #else
         // support older versions where deprecation warning is not fatal
         closureOrdered.append(closure.toList());
-    }
+    #endif
 
     const QDir cwd = ScanningSession::getCommonAncestorDirectory(closure);
 
