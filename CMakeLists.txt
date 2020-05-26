@@ -29,7 +29,6 @@ if (NOT DEFINED OPENSCAP_LIBRARIES OR NOT DEFINED OPENSCAP_INCLUDE_DIRS)
     include("${CMAKE_ROOT}/Modules/FindPkgConfig.cmake")
     pkg_check_modules(OPENSCAP REQUIRED libopenscap>=1.2.0)
 endif()
-link_directories("/usr/local/lib")
 
 # Gather info about openscap version
 if (DEFINED OPENSCAP_VERSION)
