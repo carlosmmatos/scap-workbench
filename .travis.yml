@@ -38,7 +38,7 @@ env:
 before_install:
   - brew update
   - brew install jq || brew upgrade jq
-  - brew outdated | grep -q qt && brew upgrade qt || true
+  - brew install qt || true
   - brew install asciidoc || brew upgrade asciidoc
   - brew install pkg-config || brew upgrade pkg-config
   - brew install doxygen || brew upgrade doxygen

@@ -645,7 +645,15 @@ QString TailoringWindow::getQSettingsKey() const
 void TailoringWindow::deserializeCollapsedItems()
 {
     const QStringList list = mQSettings->value(getQSettingsKey()).toStringList();
-    mCollapsedItemIds = QSet<QString>(list.begin(), list.end());
+    if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+    {
+        mCollapsedItemIds = QSet<QString>(list.begin(), list.end());
+    }
+    else
+    {
+        // support older versions where deprecation warning is not fatal
+        mCollapsedItemIds = QSet<QString>::fromList(list);
+    }
 }
 
 void TailoringWindow::serializeCollapsedItems()
@@ -657,7 +665,15 @@ void TailoringWindow::serializeCollapsedItems()
     }
     else
     {
-        mQSettings->setValue(getQSettingsKey(), QVariant(mCollapsedItemIds.values()));
+        if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+        {
+            mQSettings->setValue(getQSettingsKey(), QVariant(mCollapsedItemIds.values()));            /* code */
+        }
+        else
+        {
+            // support older versions where deprecation warning is not fatal
+            mQSettings->setValue(getQSettingsKey(), QVariant(mCollapsedItemIds.toList()));
+        }
         mQSettings->setValue(getQSettingsKey() + "_lastUsed", QVariant(QDateTime::currentDateTime()));
     }
 }
