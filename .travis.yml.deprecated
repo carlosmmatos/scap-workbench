@@ -1,4 +1,31 @@
 os: osx
+
+# Testing: Define jobs to include macOS 10.13 - present for compatibility testing.
+# Travis CI has a lot more OS options than Github Actions currently has.
+#
+# jobs:
+#   include:
+#     - os: osx
+#       osx_image: xcode9.4
+#     - os: osx
+#       osx_image: xcode10
+#     - os: osx
+#       osx_image: xcode10.1
+#     - os: osx
+#       osx_image: xcode10.2
+#     - os: osx
+#       osx_image: xcode10.3
+#     - os: osx
+#       osx_image: xcode11
+#     - os: osx
+#       osx_image: xcode11.1
+#     - os: osx
+#       osx_image: xcode11.2
+#     - os: osx
+#       osx_image: xcode11.3
+#     - os: osx
+#       osx_image: xcode11.4
+
 sudo: required
 
 language: cpp
@@ -11,9 +38,17 @@ env:
 
 before_install:
   - brew update
-  - brew install jq
-  - brew install qt5
-  - brew install asciidoc
+  - brew install jq || brew upgrade jq
+  - brew install qt || true
+  - brew install asciidoc || brew upgrade asciidoc
+  - brew install pkg-config || brew upgrade pkg-config
+  - brew install doxygen || brew upgrade doxygen
+  - brew install opendbx || brew upgrade opendbx
+  - brew install popt || brew upgrade popt
+  - brew install swig || brew upgrade swig
+  - brew install upx || brew upgrade upx
+  - brew install node || brew upgrade node
+  - npm install -g appdmg
 
 before_script:
   - git clone --depth 1 https://github.com/openscap/openscap.git -b master
@@ -36,7 +71,7 @@ script:
     fi
   - wget "${DWN_LINK}" -O ssg.zip
   - mkdir -p `pwd`/build-osx/scap-workbench.app/Contents/Resources/ssg/ && unzip ssg.zip && cp -a scap-security-guide-*/* `pwd`/build-osx/scap-workbench.app/Contents/Resources/ssg/
-  - cd build-osx && sh osx-create-dmg.sh
+  - cd build-osx && bash osx-create-dmg.sh
 
 deploy:
   provider: releases
