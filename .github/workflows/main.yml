@@ -16,7 +16,6 @@ jobs:
     # *before_install* port
     - name: Install additional packages
       run: |
-        brew update && brew upgrade
         brew install jq
         brew install qt5
         brew install asciidoc
