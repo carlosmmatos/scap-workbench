@@ -58,7 +58,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: scap-workbench-${{ github.ref }}.dmg
+        files: scap-workbench-${{ github.event.release.tag_name }}.dmg
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
