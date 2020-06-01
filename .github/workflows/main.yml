@@ -51,6 +51,7 @@ jobs:
         mkdir -p `pwd`/build-osx/scap-workbench.app/Contents/Resources/ssg/ && unzip ssg.zip && cp -a scap-security-guide-*/* `pwd`/build-osx/scap-workbench.app/Contents/Resources/ssg/
         cd build-osx && bash osx-create-dmg.sh
 
+    # Get tag release version (1.2.X etc,.)
     - name: Get the release version
       id: get_version
       run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
@@ -60,7 +61,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: scap-workbench-${{ steps.get_version.outputs.VERSION }}.dmg
+        files: build-osx/scap-workbench-${{ steps.get_version.outputs.VERSION }}.dmg
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
