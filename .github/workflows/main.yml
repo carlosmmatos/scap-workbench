@@ -16,7 +16,7 @@ jobs:
     # *before_install* port
     - name: Install additional packages
       run: |
-        brew update
+        brew update && brew upgrade
         brew install jq
         brew install qt5
         brew install asciidoc
@@ -26,7 +26,7 @@ jobs:
         brew install popt
         brew install swig
         brew install upx
-        brew outdated | grep -q node && brew upgrade node || true
+        brew install node
         npm install -g appdmg
         echo "::add-path::/usr/local/opt/qt/bin"
 
