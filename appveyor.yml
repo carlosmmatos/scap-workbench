@@ -5,16 +5,17 @@ init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 clone_folder: c:\projects\scap-workbench
 install:
-  - ps: (new-object net.webclient).DownloadFile('https://github.com/OpenSCAP/openscap/releases/download/1.3.3/OpenSCAP-1.3.3-win32.msi', 'openscap.msi')
-  - ps: msiexec /i openscap.msi /quiet /qn /norestart /log install.log
+  - ps: (new-object net.webclient).DownloadFile('https://github.com/OpenSCAP/openscap/releases/download/1.3.3/OpenSCAP-1.3.3-win32.msi', 'c:\projects\scap-workbench\openscap.msi')
+  - ps: msiexec /i c:\projects\scap-workbench\openscap.msi /quiet /qn /norestart /log install.log
   - cinst pkgconfiglite
   - cmd: vcpkg install curl libxml2 libxslt bzip2 pcre pthreads zlib getopt-win32
   - cmd: vcpkg integrate install
+  - cmd: touch doc\user_manual.html
   - cmd: sleep 900
 
 cache: c:\tools\vcpkg\installed\
 before_build:
-  - set PATH=C:\Qt\5.14.2\msvc2017\bin;%PATH%
+  - set PATH=%PATH%;C:\Qt\5.14.2\msvc2017\bin
   - cmd: |
       cd build
       cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
