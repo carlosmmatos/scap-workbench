@@ -1,18 +1,21 @@
 version: master-{build}
 image: Visual Studio 2019
 configuration: Release
+init:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 clone_folder: c:\projects\scap-workbench
 install:
   - ps: (new-object net.webclient).DownloadFile('https://github.com/OpenSCAP/openscap/releases/download/1.3.3/OpenSCAP-1.3.3-win32.msi', 'openscap.msi')
   - ps: msiexec /i openscap.msi /quiet /qn /norestart /log install.log
   - cmd: vcpkg install curl libxml2 libxslt bzip2 pcre pthreads zlib getopt-win32
+  - cmd: vcpkg integrate install
 
 cache: c:\tools\vcpkg\installed\
 before_build:
   - cmd: |
       cd build
       dir
-      cmake -DENABLE_PYTHON3=FALSE -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
+      cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
 build:
   project: c:\projects\scap-workbench\build\scap-workbench.sln
   verbosity: minimal
