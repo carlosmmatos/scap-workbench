@@ -9,7 +9,7 @@ install:
 
 cache: c:\tools\vcpkg\installed\
 before_build:
-  - cmd: >
+  - cmd: |
       cd build
       dir
       cmake -DENABLE_PYTHON3=FALSE -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
