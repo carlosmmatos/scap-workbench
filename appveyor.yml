@@ -9,7 +9,7 @@ install:
   - ps: msiexec /i openscap.msi /quiet /qn /norestart /log install.log
   - cmd: vcpkg install curl libxml2 libxslt bzip2 pcre pthreads zlib getopt-win32
   - cmd: vcpkg integrate install
-  - cmd: sleep 360
+  - cmd: sleep 900
 
 cache: c:\tools\vcpkg\installed\
 before_build:
