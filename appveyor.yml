@@ -3,10 +3,9 @@ image: Visual Studio 2019
 configuration: Release
 clone_folder: c:\projects\scap-workbench
 install:
-  - cinst wget
+  - ps: (new-object net.webclient).DownloadFile('https://github.com/OpenSCAP/openscap/releases/download/1.3.3/OpenSCAP-1.3.3-win32.msi', 'openscap.msi')
+  - ps: msiexec /i openscap.msi /quiet /qn /norestart /log install.log
   - cmd: vcpkg install curl libxml2 libxslt bzip2 pcre pthreads zlib getopt-win32
-  - cmd: wget https://github.com/OpenSCAP/openscap/releases/download/1.3.3/OpenSCAP-1.3.3-win32.msi -OutFile .\openscap.msi
-  - cmd: msiexec /package c:\projects\scap-workbench\openscap.msi /passive
 
 cache: c:\tools\vcpkg\installed\
 before_build:
