@@ -1,5 +1,5 @@
 version: master-{build}
-image: Visual Studio 2019
+image: Visual Studio 2017
 configuration: Release
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
@@ -11,7 +11,7 @@ install:
   - cmd: vcpkg install curl libxml2 libxslt bzip2 pcre pthreads zlib getopt-win32
   - cmd: vcpkg integrate install
   - cmd: touch doc\user_manual.html
-  - cmd: sleep 900
+  #- cmd: sleep 900
 
 cache: c:\tools\vcpkg\installed\
 before_build:
