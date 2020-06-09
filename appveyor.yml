@@ -5,9 +5,9 @@ init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 clone_folder: c:\projects\scap-workbench
 install:
-  - ps: (new-object net.webclient).DownloadFile('https://github.com/OpenSCAP/openscap/releases/download/1.3.3/OpenSCAP-1.3.3-win32.msi', 'c:\projects\scap-workbench\openscap.msi')
-  - ps: msiexec /i c:\projects\scap-workbench\openscap.msi /quiet /qn /norestart /log install.log
-  - cinst pkgconfiglite
+  #- ps: (new-object net.webclient).DownloadFile('https://github.com/OpenSCAP/openscap/releases/download/1.3.3/OpenSCAP-1.3.3-win32.msi', 'c:\projects\scap-workbench\openscap.msi')
+  #- ps: msiexec /i c:\projects\scap-workbench\openscap.msi /quiet /qn /norestart /log install.log
+  #- cinst pkgconfiglite
   - cmd: vcpkg install curl libxml2 libxslt bzip2 pcre pthreads zlib getopt-win32
   - cmd: vcpkg integrate install
   - cmd: touch doc\user_manual.html
@@ -16,8 +16,12 @@ install:
 cache: c:\tools\vcpkg\installed\
 before_build:
   - set PATH=%PATH%;C:\Qt\5.13.2\msvc2017\bin
+  # Build OpenSCAP first
   - cmd: |
-      cd build
+      git clone --depth 1 https://github.com/openscap/openscap.git -b master
+      cd openscap/build
+      cmake -DENABLE_PYTHON3=FALSE -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
+      cd ../../scap-workbench/build
       cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
 build:
   project: c:\projects\scap-workbench\build\scap-workbench.sln
