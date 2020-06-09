@@ -22,8 +22,9 @@ before_build:
       cd openscap/build
       cmake -DENABLE_PYTHON3=FALSE -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
       msbuild openscap.sln /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+      sleep 900
   - cmd: |
-      cd build
+      c:\projects\scap-workbench\build
       cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
 build:
   project: c:\projects\scap-workbench\build\scap-workbench.sln
