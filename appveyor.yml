@@ -21,8 +21,7 @@ before_build:
       git clone --depth 1 https://github.com/openscap/openscap.git -b master
       cd openscap/build
       cmake -DENABLE_PYTHON3=FALSE -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
-      msbuild openscap.sln /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-      sleep 900
+      msbuild c:\projects\scap-workbench\openscap\build\openscap.sln /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
   - cmd: |
       c:\projects\scap-workbench\build
       cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
