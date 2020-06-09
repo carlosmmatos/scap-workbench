@@ -15,7 +15,7 @@ install:
 
 cache: c:\tools\vcpkg\installed\
 before_build:
-  - set PATH=%PATH%;C:\Qt\5.14.2\msvc2017\bin
+  - set PATH=%PATH%;C:\Qt\5.13.2\msvc2017\bin
   - cmd: |
       cd build
       cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
