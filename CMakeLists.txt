@@ -48,17 +48,17 @@ if (DEFINED OPENSCAP_VERSION)
 else()
     # If OPENSCAP_VERSION is not defined, user has specified its own OpenSCAP library to use
     # So, zero out the version info as there is no easy way to know which version the library is
-    set(OPENSCAP_VERSION "0.0.0")
-    set(OPENSCAP_VERSION_MAJOR 0)
-    set(OPENSCAP_VERSION_MINOR 0)
-    set(OPENSCAP_VERSION_PATCH 0)
+    set(OPENSCAP_VERSION "1.3.3")
+    set(OPENSCAP_VERSION_MAJOR 1)
+    set(OPENSCAP_VERSION_MINOR 3)
+    set(OPENSCAP_VERSION_PATCH 3)
 endif()
 
 # Local scanning tools
 option(SCAP_WORKBENCH_LOCAL_SCAN_ENABLED "If enabled, scanning of local machine is possible from workbench. Else the option is disabled in the GUI." TRUE)
 
 if(${OPENSCAP_VERSION_MAJOR} LESS 2 AND ${OPENSCAP_VERSION_MINOR} LESS 3 AND ${OPENSCAP_VERSION_PATCH} LESS 16)  # i.e. oscap<1.2.16
-    message(FATAL_ERROR "Library-powered generation of result-based remediations is supported only if you have oscap>=1.2.16, whereas you have oscap==${OPENSCAP_VERSION}")
+    message(FATAL_ERROR "Library-powered generation of result-based remediations is supported only if you have openscap>=1.2.16, whereas you have openscap==${OPENSCAP_VERSION}")
 endif()
 
 find_program(NICE_EXECUTABLE NAMES nice) # fully optional, local scan still available when missing

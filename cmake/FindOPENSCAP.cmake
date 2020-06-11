@@ -12,8 +12,9 @@ libfind_pkg_check_modules(OPENSCAP_PKGCONF libopenscap)
 
 # Include dir
 find_path(OPENSCAP_INCLUDE_DIR
-	NAMES openscap/xccdf_session.h
+	NAMES xccdf_session.h
 	PATHS ${OPENSCAP_PKGCONF_INCLUDE_DIRS}
+	PATH_SUFFIXES openscap
 )
 
 # Finally the library itself
