@@ -17,6 +17,7 @@ cache: c:\tools\vcpkg\installed\
 before_build:
   - set PATH=%PATH%;C:\Qt\5.13.2\msvc2017\bin
   - cmd: |
+      sleep 3600
       cd c:\projects\scap-workbench\build
       cmake -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake ..
 build:
